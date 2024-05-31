@@ -19,7 +19,8 @@ const Login = () => {
       setLoading(true);
       const res = await axios.post(
         "http://localhost:3000/user/login",
-        formData
+        formData,
+        { withCredentials: true }
       );
       console.log(res.data);
       setLoading(false);
