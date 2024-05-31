@@ -72,7 +72,9 @@ const Register = () => {
           <span className="text-blue-500 hover:underline">Login</span>
         </Link>
       </div>
-      <p className="text-red-500 mt-4">{error && "Something went wrong"}</p>
+      <p className="text-red-500 mt-4">
+        {error && "Something went wrong. Please try again."}
+      </p>
     </div>
   );
 };

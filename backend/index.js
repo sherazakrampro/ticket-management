@@ -1,6 +1,7 @@
 const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./db/dbConnection");
 const userRouter = require("./routes/user.route");
 
@@ -11,6 +12,7 @@ connectDB(mongodbURL);
 
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

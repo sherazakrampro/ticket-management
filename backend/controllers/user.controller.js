@@ -50,10 +50,17 @@ const loginUser = async (req, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
-  res.status(200).json({
-    message: "Login successful",
-    token,
-  });
+  const { password: pwd, ...userWithoutPassword } = user._doc;
+  res
+    .cookie("token", token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24), // 24 hours
+    })
+    .status(200)
+    .json({
+      message: "Login successful",
+      user: userWithoutPassword,
+    });
 };
 
 module.exports = { registerUser, loginUser };

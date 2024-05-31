@@ -7,27 +7,27 @@ const Header = () => {
         <Link to="/">
           <h1 className="text-4xl text-white font-bold">TMS</h1>
         </Link>
-        <ul className="flex gap-4 text-white">
+        <ul className="flex gap-5 text-white">
           <Link to="/">
-            <li className="hover:underline">Home</li>
+            <li className="hover:border-b">Home</li>
           </Link>
           <Link to="/categories">
-            <li className="hover:underline">Categories</li>
+            <li className="hover:border-b">Categories</li>
           </Link>
           <Link to="/create-ticket">
-            <li className="hover:underline">Create Ticket</li>
+            <li className="hover:border-b">Create Ticket</li>
           </Link>
         </ul>
-        <ul className="flex gap-4 text-white">
+        <ul className="flex gap-5 text-white">
           <Link to="/profile">
-            <li className="hover:underline">Profile</li>
+            <li className="hover:border-b">Profile</li>
           </Link>
           <Link to="/login">
-            <li className="hover:underline">Login</li>
+            <li className="hover:border-b">Login</li>
           </Link>
-          <li className="hover:underline">Logout</li>
+          <li className="hover:border-b">Logout</li>
           <Link to="/register">
-            <li className="hover:underline">Register</li>
+            <li className="hover:border-b">Register</li>
           </Link>
         </ul>
       </div>
