@@ -8,6 +8,8 @@ const app = express();
 const mongodbURL = process.env.MONGODB_URL;
 connectDB(mongodbURL);
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
