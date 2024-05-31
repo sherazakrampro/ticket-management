@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -22,6 +24,7 @@ const Register = () => {
       console.log(res.data);
       setLoading(false);
       setError(false);
+      navigate("/login");
     } catch (error) {
       setLoading(false);
       setError(true);
