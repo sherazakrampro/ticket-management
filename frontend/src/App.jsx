@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import CreateTicket from "./pages/CreateTicket";
 import Header from "./components/Header";
 import Categories from "./pages/Categories";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
