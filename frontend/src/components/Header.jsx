@@ -1,6 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../redux/user/userSlice";
+import axios from "axios";
 
 const Header = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await axios.get("http://localhost:3000/user/logout", {
+        withCredentials: true,
+      });
+      dispatch(logout());
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <nav className="bg-sky-700">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
@@ -22,13 +41,22 @@ const Header = () => {
           <Link to="/profile">
             <li className="hover:border-b">Profile</li>
           </Link>
-          <Link to="/login">
-            <li className="hover:border-b">Login</li>
-          </Link>
-          <li className="hover:border-b">Logout</li>
-          <Link to="/register">
-            <li className="hover:border-b">Register</li>
-          </Link>
+          {currentUser ? (
+            <Link>
+              <li onClick={handleLogout} className="hover:border-b">
+                Logout
+              </li>
+            </Link>
+          ) : (
+            <>
+              <Link to="/login">
+                <li className="hover:border-b">Login</li>
+              </Link>
+              <Link to="/register">
+                <li className="hover:border-b">Register</li>
+              </Link>
+            </>
+          )}
         </ul>
       </div>
     </nav>
