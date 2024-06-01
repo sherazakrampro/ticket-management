@@ -19,27 +19,12 @@ const ticketSchema = new mongoose.Schema(
     priority: {
       type: String,
       required: true,
-      default: "Low",
+      default: "Medium",
       enum: ["Low", "Medium", "High"],
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true,
-    },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    dueDate: {
-      type: Date,
-    },
-    assignedTo: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-    labels: {
-      type: [String],
     },
   },
   { timestamps: true }
