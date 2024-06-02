@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 // Register User
-const registerUser = async (req, res) => {
+const registerUser = async (req, res, next) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     return res.status(400).json({
@@ -21,15 +21,12 @@ const registerUser = async (req, res) => {
       message: "User created successfully",
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Internal server error",
-      error: error.message,
-    });
+    next(error);
   }
 };
 
 // Login User
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
 
   // Check if all fields are provided
@@ -76,10 +73,7 @@ const loginUser = async (req, res) => {
         user: userWithoutPassword,
       });
   } catch (error) {
-    res.status(500).json({
-      message: "Internal server error",
-      error: error.message,
-    });
+    next(error);
   }
 };
 

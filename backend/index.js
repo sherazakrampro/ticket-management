@@ -27,6 +27,16 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/tickets", ticketRouter);
 
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
