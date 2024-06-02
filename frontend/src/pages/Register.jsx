@@ -19,7 +19,11 @@ const Register = () => {
       setLoading(true);
       const res = await axios.post(
         "http://localhost:3000/user/register",
-        formData
+        formData,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
       );
       console.log(res.data);
       setLoading(false);
@@ -27,7 +31,19 @@ const Register = () => {
       navigate("/login");
     } catch (error) {
       setLoading(false);
-      setError(true);
+      if (error.response) {
+        if (error.response.status === 400) {
+          setError("All fields are required");
+        } else if (error.response.status === 409) {
+          setError("User already exists");
+        } else {
+          setError("An error occurred. Please try again.");
+        }
+      } else if (error.request) {
+        setError("No response from server. Please check your network.");
+      } else {
+        setError("An error occurred. Please try again.");
+      }
     }
   };
 
@@ -72,9 +88,7 @@ const Register = () => {
           <span className="text-blue-500 hover:underline">Login</span>
         </Link>
       </div>
-      <p className="text-red-500 mt-4">
-        {error && "Something went wrong. Please try again."}
-      </p>
+      <p className="text-red-500 mt-4">{error && error}</p>
     </div>
   );
 };
