@@ -33,14 +33,19 @@ const Header = () => {
           <Link to="/categories">
             <li className="hover:border-b">Categories</li>
           </Link>
-          <Link to="/create-ticket">
-            <li className="hover:border-b">Create Ticket</li>
-          </Link>
+          {currentUser && (
+            <Link to="/create-ticket">
+              <li className="hover:border-b">Create Ticket</li>
+            </Link>
+          )}
         </ul>
         <ul className="flex gap-5 text-white">
-          <Link to="/profile">
-            <li className="hover:border-b">Profile</li>
-          </Link>
+          {currentUser && (
+            <Link to="/profile">
+              <li className="hover:border-b">Profile</li>
+            </Link>
+          )}
+
           {currentUser ? (
             <Link>
               <li onClick={handleLogout} className="hover:border-b">
