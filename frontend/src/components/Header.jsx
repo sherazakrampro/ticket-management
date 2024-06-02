@@ -21,7 +21,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="bg-sky-700">
+    <nav className="bg-sky-700 shadow-md">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
         <Link to="/">
           <h1 className="text-4xl text-white font-bold">TMS</h1>

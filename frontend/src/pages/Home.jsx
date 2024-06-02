@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Ticket from "../components/Ticket";
 
 const Home = () => {
   const [tickets, setTickets] = useState([]);
@@ -18,11 +19,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto p-3">
+    <div className="max-w-6xl mx-auto p-3 flex flex-wrap gap-4">
       {tickets.length === 0 ? (
         <p>No tickets available</p>
       ) : (
-        tickets.map((ticket) => <div key={ticket._id}>{ticket.title}</div>)
+        tickets.map((ticket) => <Ticket key={ticket._id} ticket={ticket} />)
       )}
     </div>
   );
