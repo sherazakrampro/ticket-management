@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Login = () => {
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
+  const [errorText, setErrorText] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,13 +27,30 @@ const Login = () => {
       const res = await axios.post(
         "http://localhost:3000/user/login",
         formData,
-        { withCredentials: true }
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
       );
-      const data = res.data;
-      console.log(data);
-      dispatch(loginSuccess(data));
+      console.log(res.data);
+      dispatch(loginSuccess(res.data));
       navigate("/");
     } catch (error) {
+      if (error.response) {
+        if (error.response.status === 401) {
+          setErrorText("Invalid password");
+        } else if (error.response.status === 404) {
+          setErrorText("User not found");
+        } else if (error.response.status === 400) {
+          setErrorText("All fields are required");
+        } else {
+          setErrorText("An error occurred. Please try again.");
+        }
+      } else if (error.request) {
+        setErrorText("No response from server. Please check your network.");
+      } else {
+        setErrorText("An error occurred. Please try again.");
+      }
       dispatch(loginFailure(error));
     }
   };
@@ -70,9 +88,7 @@ const Login = () => {
           <span className="text-blue-500 hover:underline">Register</span>
         </Link>
       </div>
-      <p className="text-red-500 mt-4">
-        {error && "Something went wrong. Please try again."}
-      </p>
+      <p className="text-red-500 mt-4">{error && <span>{errorText}</span>}</p>
     </div>
   );
 };
