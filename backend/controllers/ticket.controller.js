@@ -22,4 +22,14 @@ const createTicket = async (req, res) => {
   }
 };
 
-module.exports = { createTicket };
+// Get All Tickets
+const getAllTickets = async (req, res) => {
+  try {
+    const tickets = await Ticket.find().sort({ createdAt: -1 });
+    res.status(200).json(tickets);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createTicket, getAllTickets };

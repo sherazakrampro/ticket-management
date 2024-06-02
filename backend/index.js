@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
-app.use("/ticket", ticketRouter);
+app.use("/tickets", ticketRouter);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
