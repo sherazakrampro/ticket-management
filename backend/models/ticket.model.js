@@ -22,6 +22,11 @@ const ticketSchema = new mongoose.Schema(
       default: "Medium",
       enum: ["Low", "Medium", "High"],
     },
+    category: {
+      type: String,
+      required: true,
+      enum: ["Bug", "Feature Request", "Support", "Improvement"],
+    },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
