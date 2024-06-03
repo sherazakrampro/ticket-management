@@ -7,6 +7,7 @@ import CreateTicket from "./pages/CreateTicket";
 import Header from "./components/Header";
 import Categories from "./pages/Categories";
 import Footer from "./components/Footer";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
   return (
@@ -14,7 +15,14 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/create-ticket" element={<CreateTicket />} />
+        <Route
+          path="/create-ticket"
+          element={
+            <PrivateRoute>
+              <CreateTicket />
+            </PrivateRoute>
+          }
+        />
         <Route path="/categories" element={<Categories />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

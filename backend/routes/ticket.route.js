@@ -6,10 +6,11 @@ const {
   updateTicket,
   deleteTicket,
 } = require("../controllers/ticket.controller");
+const authMiddleware = require("../middlewares/auth");
 
 const router = express.Router();
 
-router.post("/create", createTicket);
+router.post("/create", authMiddleware, createTicket);
 router.get("/", getAllTickets);
 router.get("/:id", getTicket);
 router.put("/:id", updateTicket);
