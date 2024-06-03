@@ -14,6 +14,25 @@ const TicketPage = () => {
     navigate(`/tickets/edit/${id}`);
   };
 
+  const handleDeleteButtonClick = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3000/tickets/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      navigate("/");
+    } catch (err) {
+      setError("Failed to delete ticket");
+    }
+  };
+
   useEffect(() => {
     const fetchTicket = async () => {
       try {
@@ -79,7 +98,10 @@ const TicketPage = () => {
         >
           Edit
         </span>
-        <span className="font-semibold text-sm bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-800 cursor-pointer">
+        <span
+          onClick={handleDeleteButtonClick}
+          className="font-semibold text-sm bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-800 cursor-pointer"
+        >
           Delete
         </span>
       </div>
