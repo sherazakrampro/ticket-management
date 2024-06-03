@@ -16,6 +16,10 @@ const Ticket = ({ ticket }) => {
           <span className="font-semibold">Priority:</span>
           <span>{ticket.priority}</span>
         </div>
+        <div className="flex justify-between items-center text-gray-700">
+          <span className="font-semibold">Category:</span>
+          <span>{ticket.category}</span>
+        </div>
       </div>
     </div>
   );
@@ -27,6 +31,7 @@ Ticket.propTypes = {
     description: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     priority: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
   }).isRequired,
 };
 
