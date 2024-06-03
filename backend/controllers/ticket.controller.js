@@ -35,7 +35,7 @@ const getAllTickets = async (req, res) => {
 const getTicket = async (req, res) => {
   try {
     const ticket = await Ticket.findById(req.params.id);
-    res.status(200).json(ticket);
+    res.status(200).json({ ticket });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -9,6 +9,7 @@ import Categories from "./pages/Categories";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
+import TicketPage from "./pages/TicketPage";
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
           }
         />
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/tickets/:id" element={<TicketPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>

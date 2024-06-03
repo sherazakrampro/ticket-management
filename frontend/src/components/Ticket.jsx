@@ -1,8 +1,18 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 const Ticket = ({ ticket }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/tickets/${ticket._id}`);
+  };
+
   return (
-    <div className="max-w-sm w-80 bg-sky-300 border border-sky-200 rounded-lg shadow-lg overflow-hidden">
+    <div
+      onClick={handleClick}
+      className="max-w-sm w-80 bg-sky-300 border border-sky-200 rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-110 mb-6"
+    >
       <div className="p-4">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">
           {ticket.title}
@@ -32,6 +42,7 @@ Ticket.propTypes = {
     status: PropTypes.string.isRequired,
     priority: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
   }).isRequired,
 };
 
