@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Categories from "./pages/Categories";
 import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 
 const App = () => {
   return (
@@ -24,9 +25,32 @@ const App = () => {
           }
         />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/register" element={<Register />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/logout"
+          element={
+            <PublicRoute>
+              <logout />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />
     </BrowserRouter>
