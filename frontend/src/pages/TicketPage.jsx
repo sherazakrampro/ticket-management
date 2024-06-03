@@ -49,7 +49,7 @@ const TicketPage = () => {
   }
 
   return (
-    <div className="mx-auto p-4 mt-4 max-w-lg">
+    <div className="p-4 mt-8 max-w-lg w-full mx-auto bg-sky-300 border border-sky-200 rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold text-center mb-8">
         {ticket.ticket.title}
       </h1>
