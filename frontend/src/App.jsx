@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import TicketPage from "./pages/TicketPage";
+import EditTicketPage from "./pages/EditTicketPage";
 
 const App = () => {
   return (
@@ -53,6 +54,14 @@ const App = () => {
         />
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/tickets/:id" element={<TicketPage />} />
+        <Route
+          path="/tickets/edit/:id"
+          element={
+            <PrivateRoute>
+              <EditTicketPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </BrowserRouter>

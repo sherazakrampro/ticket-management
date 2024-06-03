@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -7,6 +7,12 @@ const TicketPage = () => {
   const [ticket, setTicket] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleEditButtonClick = () => {
+    navigate(`/tickets/edit/${id}`);
+  };
 
   useEffect(() => {
     const fetchTicket = async () => {
@@ -54,17 +60,28 @@ const TicketPage = () => {
         {ticket.ticket.title}
       </h1>
       <p className="text-gray-700 mb-4">{ticket.ticket.description}</p>
-      <div className="flex justify-between items-center text-gray-700 mb-4">
+      <div className="flex justify-between items-center text-gray-700 mb-2">
         <span className="font-semibold">Status:</span>
         <span>{ticket.ticket.status}</span>
       </div>
-      <div className="flex justify-between items-center text-gray-700 mb-4">
+      <div className="flex justify-between items-center text-gray-700 mb-2">
         <span className="font-semibold">Priority:</span>
         <span>{ticket.ticket.priority}</span>
       </div>
-      <div className="flex justify-between items-center text-gray-700 mb-4">
+      <div className="flex justify-between items-center text-gray-700 mb-2">
         <span className="font-semibold">Category:</span>
         <span>{ticket.ticket.category}</span>
+      </div>
+      <div className="flex justify-between items-center mt-6">
+        <span
+          onClick={handleEditButtonClick}
+          className="font-semibold text-sm bg-sky-700 text-white py-2 px-4 rounded-lg hover:bg-sky-800 cursor-pointer"
+        >
+          Edit
+        </span>
+        <span className="font-semibold text-sm bg-red-700 text-white py-2 px-4 rounded-lg hover:bg-red-800 cursor-pointer">
+          Delete
+        </span>
       </div>
     </div>
   );

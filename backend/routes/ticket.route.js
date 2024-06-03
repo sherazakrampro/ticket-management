@@ -13,7 +13,7 @@ const router = express.Router();
 router.post("/create", authMiddleware, createTicket);
 router.get("/", getAllTickets);
 router.get("/:id", getTicket);
-router.put("/:id", updateTicket);
-router.delete("/:id", deleteTicket);
+router.put("/:id", authMiddleware, updateTicket);
+router.delete("/:id", authMiddleware, deleteTicket);
 
 module.exports = router;
