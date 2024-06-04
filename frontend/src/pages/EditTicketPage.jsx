@@ -19,6 +19,7 @@ const EditTicketPage = () => {
   useEffect(() => {
     const fetchTicket = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(
           `http://localhost:3000/tickets/${id}`,
           {
@@ -39,8 +40,12 @@ const EditTicketPage = () => {
         });
         setLoading(false);
       } catch (err) {
-        setError("Failed to fetch ticket details");
         setLoading(false);
+        if (err.response) {
+          setError(err.response.data.message);
+        } else {
+          setError("Failed to fetch ticket details");
+        }
       }
     };
 
@@ -56,11 +61,11 @@ const EditTicketPage = () => {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="text-red-500 m-6">{error}</div>;
   }
 
   if (!ticket) {
-    return <div>Ticket not found</div>;
+    return <div className="text-red-500 m-6">Ticket not found</div>;
   }
 
   const handleChange = (e) => {

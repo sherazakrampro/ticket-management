@@ -16,6 +16,7 @@ const TicketPage = () => {
 
   const handleDeleteButtonClick = async () => {
     try {
+      setLoading(true);
       const response = await axios.delete(
         `http://localhost:3000/tickets/${id}`,
         {
@@ -27,9 +28,15 @@ const TicketPage = () => {
         }
       );
       console.log(response.data);
+      setLoading(false);
       navigate("/");
     } catch (err) {
-      setError("Failed to delete ticket");
+      setLoading(false);
+      if (err.response) {
+        setError(err.response.data.message);
+      } else {
+        setError("Failed to delete ticket");
+      }
     }
   };
 
@@ -66,11 +73,11 @@ const TicketPage = () => {
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className="text-red-500 m-6">{error}</div>;
   }
 
   if (!ticket) {
-    return <div>Ticket not found</div>;
+    return <div className="text-red-500 m-6">Ticket not found</div>;
   }
 
   return (
