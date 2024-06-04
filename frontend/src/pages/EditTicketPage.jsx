@@ -165,6 +165,12 @@ const EditTicketPage = () => {
         <button className="bg-sky-700 text-white p-3 rounded-lg hover:bg-sky-800 uppercase disabled:opacity-80">
           Update
         </button>
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-red-700 text-white p-3 rounded-lg hover:bg-red-800 uppercase disabled:opacity-80"
+        >
+          Cancel
+        </button>
       </form>
       {error && <p className="text-red-500 mt-3">{error}</p>}
     </div>
