@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 const Register = () => {
   const [formData, setFormData] = useState({});
@@ -81,13 +82,16 @@ const Register = () => {
         >
           {loading ? "Loading..." : "Register"}
         </button>
+        <OAuth />
       </form>
+
       <div className="flex gap-2 mt-4">
         <p>Already have an account?</p>
         <Link to="/login">
           <span className="text-blue-500 hover:underline">Login</span>
         </Link>
       </div>
+
       <p className="text-red-500 mt-4">{error && error}</p>
     </div>
   );
