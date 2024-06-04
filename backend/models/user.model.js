@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    avatar: {
+      type: String,
+      default: "https://i.stack.imgur.com/l60Hf.png",
+    },
   },
   { timestamps: true }
 );
