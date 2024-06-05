@@ -40,18 +40,15 @@ const Header = () => {
           )}
         </ul>
         <ul className="flex gap-5 text-white">
-          {currentUser && (
-            <Link to="/profile">
-              <li className="hover:border-b">Profile</li>
-            </Link>
-          )}
-
           {currentUser ? (
-            <Link>
-              <li onClick={handleLogout} className="hover:border-b">
-                Logout
-              </li>
-            </Link>
+            <>
+              <Link>
+                <li onClick={handleLogout} className="hover:border-b">
+                  Logout
+                </li>
+              </Link>
+              <li>{currentUser.user.name}</li>
+            </>
           ) : (
             <>
               <Link to="/login">
