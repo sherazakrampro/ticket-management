@@ -93,7 +93,13 @@ const TicketPage = () => {
         </div>
         <div className="flex justify-between items-center text-gray-700 mb-2">
           <span className="font-semibold">Priority:</span>
-          <span>{ticket.ticket.priority}</span>
+          {ticket.ticket.priority === "High" ? (
+            <span className="text-red-600">{ticket.ticket.priority}</span>
+          ) : ticket.ticket.priority === "Medium" ? (
+            <span className="text-green-600">{ticket.ticket.priority}</span>
+          ) : (
+            <span className="text-yellow-600">{ticket.ticket.priority}</span>
+          )}
         </div>
         <div className="flex justify-between items-center text-gray-700 mb-2">
           <span className="font-semibold">Category:</span>
