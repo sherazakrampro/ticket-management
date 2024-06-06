@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/user/userSlice";
 import axios from "axios";
+import { IoSearch } from "react-icons/io5";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -39,6 +40,15 @@ const Header = () => {
             </Link>
           )}
         </ul>
+        <div className="flex justify-between items-center">
+          <input
+            type="text"
+            className="py-1 px-3 rounded-xl focus:outline-none w-full"
+            placeholder="Search Tickets..."
+          />
+          <IoSearch className="text-xl -translate-x-7 cursor-pointer" />
+        </div>
+
         <ul className="flex gap-5 text-white">
           {currentUser ? (
             <>
