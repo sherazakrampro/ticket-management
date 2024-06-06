@@ -3,6 +3,7 @@ const Ticket = require("../models/ticket.model");
 // Create Ticket
 const createTicket = async (req, res) => {
   const { title, description, priority, status, category } = req.body;
+  const createdBy = req.user;
   if (!title || !description || !priority || !status || !category) {
     return res.status(400).json({ message: "All fields are required" });
   }
@@ -12,6 +13,7 @@ const createTicket = async (req, res) => {
     priority,
     status,
     category,
+    createdBy,
   });
   try {
     await ticket.save();

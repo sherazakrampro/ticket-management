@@ -27,9 +27,10 @@ const ticketSchema = new mongoose.Schema(
       required: true,
       enum: ["Bug", "Feature Request", "Support", "Improvement"],
     },
-    user: {
+    createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
     },
   },
   { timestamps: true }
