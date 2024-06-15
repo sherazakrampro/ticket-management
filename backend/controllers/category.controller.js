@@ -6,7 +6,6 @@ const createCategory = async (req, res) => {
   if (!name) {
     return res.status(400).json({ message: "All fields are required" });
   }
-
   try {
     const category = new Category({ name });
     await category.save();
@@ -18,4 +17,14 @@ const createCategory = async (req, res) => {
   }
 };
 
-module.exports = { createCategory };
+// Get All Categories
+const getAllCategories = async (req, res) => {
+  try {
+    const categories = await Category.find();
+    res.status(200).json({ categories });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { createCategory, getAllCategories };
