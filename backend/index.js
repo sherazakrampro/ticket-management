@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const connectDB = require("./db/dbConnection");
 const userRouter = require("./routes/user.route");
 const ticketRouter = require("./routes/ticket.route");
+const categoryRouter = require("./routes/category.route");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", userRouter);
 app.use("/tickets", ticketRouter);
+app.use("/category", categoryRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
