@@ -37,4 +37,21 @@ const getCategory = async (req, res) => {
   }
 };
 
-module.exports = { createCategory, getAllCategories, getCategory };
+// Update Category
+const updateCategory = async (req, res) => {
+  try {
+    const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json({ category });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  createCategory,
+  getAllCategories,
+  getCategory,
+  updateCategory,
+};
